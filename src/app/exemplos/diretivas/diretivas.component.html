@@ -1,0 +1,34 @@
+<section>
+  <h3>*ngIf</h3><hr />
+  <p *ngIf="!oculto">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, similique animi ullam tenetur hic dignissimos.
+  </p>
+  <button (click)="ocultar()" [disabled]="oculto">Ocultar</button>
+</section>
+
+<section>
+  <h3>*ngFor</h3><hr />
+  <input [(ngModel)]="alimento" placeholder="Digite um item">
+  <button (click)="add()">Adicionar</button>
+  <ul>
+    <li *ngFor="let compra of compras; let i = index">
+      {{i}} - {{compra}}
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>*ngSwtich</h3><hr />
+  <select [(ngModel)]="status">
+    <option value="loading">Loading</option>
+    <option value="error">Error</option>
+    <option value="data">Data</option>
+  </select>
+  
+  <div [ngSwitch]="status">
+    <p *ngSwitch="'loading'">Carregando</p>
+    <p *ngSwitch="'error'">Um erro ocorreu...</p>
+    <p *ngSwitch="'data'">Os dados chegaram</p>
+    <p *ngSwitchDefault>Problema desconhecido!</p>
+  </div>
+</section>
