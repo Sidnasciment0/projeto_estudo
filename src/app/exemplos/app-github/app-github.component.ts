@@ -6,10 +6,9 @@ import { Repository } from './models/repository';
 @Component({
   selector: 'app-app-github',
   templateUrl: './app-github.component.html',
-  styleUrls: ['./app-github.component.scss']
+  styleUrls: ['./app-github.component.scss'],
 })
 export class AppGithubComponent implements OnInit {
-
   username: string = '';
   repositories: Repository[] = [];
 
@@ -17,28 +16,26 @@ export class AppGithubComponent implements OnInit {
   error: boolean = false;
 
   getUserRepositories() {
-    this.loading = true;
-    this.error = false;
-
-    if(this.username.length > 0) {
-      this.githubService.getUserRepositories(this.username).subscribe({
+    if (this.username.length > 0) {
+      this.loading = true;
+      this.error = false;
+      this.githubService.getUserRepositories(this.username).
+      subscribe({
         next: (data) => {
-        this.repositories = data;
-        this.loading = false;
-      },
+          this.repositories = data;
+          this.loading = false;
+        },
 
-      error: (err) => {
-        this.loading = false;
-        this.error = true;
-        this.repositories = [];
-      }
-    });
+        error: (err) => {
+          this.loading = false;
+          this.error = true;
+          this.repositories = [];
+        },
+      });
+    }
   }
-}
 
   constructor(private githubService: GithubService) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }
